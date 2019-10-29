@@ -6,25 +6,32 @@ export class User extends React.Component {
     const { name, error, isFetching } = this.props;
 
     if (error) {
-      return (<p>Во время запроса произошла ошибка, обновите страницу</p>);
+      return <p>Во время запроса произошла ошибка, обновите страницу</p>;
     }
 
     if (isFetching) {
-      return (<p>Загружаю...</p>);
+      return <p>Загружаю...</p>;
     }
 
     if (name) {
-      return (<p>Привет, {name}!</p>);
+      return (
+        <p>
+          Привет, {name}!
+          <button className='btn' onClick={this.props.handleLogout}>
+            Выйти
+          </button>
+        </p>
+      );
     } else {
       return (
-        <button className="btn" onClick={this.props.handleLogin}>
+        <button className='btn' onClick={this.props.handleLogin}>
           Войти
         </button>
       );
     }
-  }
+  };
   render() {
-    return <div className="ib user">{this.renderTemplate()}</div>
+    return <div className='ib user'>{this.renderTemplate()}</div>;
   }
 }
 
@@ -33,4 +40,5 @@ User.propTypes = {
   error: PropTypes.string,
   isFetching: PropTypes.bool.isRequired,
   handleLogin: PropTypes.func.isRequired,
-}
+  handleLogout: PropTypes.func.isRequired,
+};
